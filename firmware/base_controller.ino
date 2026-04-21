@@ -1,11 +1,11 @@
 #include <ros.h>
-#include "diffbot_base_config.h"
+#include "mobile_robot_base_config.h"
 #include "base_controller.h"
 #include "adafruit_feather_wing/adafruit_feather_wing.h"
 
 ros::NodeHandle nh;
 
-using namespace diffbot;
+using namespace mobile_robot;
 
 AdafruitMotorController motor_controller_right = AdafruitMotorController(MOTOR_RIGHT);
 AdafruitMotorController motor_controller_left = AdafruitMotorController(MOTOR_LEFT);
@@ -17,7 +17,7 @@ void setup()
       base_controller.setup();
     base_controller.init();
 
-    nh.loginfo("Initialize DiffBot Motor Controllers");
+    nh.loginfo("Initialize mobile_robot Motor Controllers");
     motor_controller_left.begin();
     motor_controller_right.begin();
     nh.loginfo("Setup finished");

@@ -18,7 +18,7 @@ This repository contains the complete documentation and code for building a 4WD 
 | **Motor Driver (I2C)** | Pins 18 (SDA), 19 (SCL) | Teensy 4.0 |
 | **Motors** | Motor Driver Output | Motor Driver |
 
-![Wiring Architecture](https://ros-mobile-robots.com/images/hardware_setup/diffbot_hardware_architecture.png)
+![Wiring Architecture](https://ros-mobile-robots.com/images/hardware_setup/mobile_robot_hardware_architecture.png)
 
 ## Quick Start
 To get started with this project, clone the repository and follow the instructions in the firmware directory.

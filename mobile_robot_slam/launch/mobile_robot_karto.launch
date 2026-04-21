@@ -1,0 +1,15 @@
+<launch>
+  <!-- Arguments -->
+  <!-- The lua scripts are required for cartographer, unused here -->
+  <arg name="configuration_basename" default="mobile_robot_lds_2d.lua"/>
+  <!-- gmapping expects the laser scan on the scan topic 
+       but mobile_robot provides this in the mobile_robot namespace -->
+  <arg name="scan_topic"  default="mobile_robot/scan"/>
+
+  <!-- slam_karto -->
+  <node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
+    <rosparam command="load" file="$(find mobile_robot_slam)/config/karto_mapper_params.yaml" />
+    <!-- remappings -->
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+</launch>

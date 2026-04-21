@@ -1,0 +1,7 @@
+<launch>
+    <!-- Arguments -->
+    <!--arg name="model" default="$(env mobile_robot_MODEL)" doc="model type [mobile_robot, remo]"/-->
+    <arg name="model" default="mobile_robot" doc="model type [mobile_robot, remo]"/>
+    <!-- Launch visualization in rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_bringup)/rviz/$(arg model)_bringup.rviz" required="true" />
+</launch>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+        args="-d $(find mobile_robot_mbf)/rviz/mobile_robot_mbf.rviz"/>
+</launch>

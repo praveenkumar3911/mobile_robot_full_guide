@@ -1,0 +1,6 @@
+<launch>
+    <arg name="rvizconfig" default="$(find mobile_robot_control)/rviz/mobile_robot.rviz" />
+
+    <!-- Launch visualization in rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_description)/urdf.rviz" required="true" />
+</launch>

@@ -1,0 +1,28 @@
+<!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test -->
+<launch>
+    <!--arg name="model" default="$(env mobile_robot_MODEL)" doc="model type [mobile_robot, remo]"/-->
+    <arg name="model" default="mobile_robot" doc="model type [mobile_robot, remo]"/>
+    <arg name="description_package" default="$(eval find(arg('model') + '_description'))" />
+    <arg name="urdf_file" default="$(find xacro)/xacro '$(arg description_package)/urdf/$(arg model).urdf.xacro'" />
+
+    <!-- Load the URDF model of mobile_robot into the ROS Parameter Server -->
+    <param name="mobile_robot/robot_description" command="$(arg urdf_file)" />
+
+    <!-- Run the mobile_robot_base -->
+    <!-- This will create the mobile_robot hardware interface and instantiate a new controller manager with it -->
+    <node name="mobile_robot_base" pkg="mobile_robot_base" type="mobile_robot_base" ns="mobile_robot" output="screen"/>
+
+    <!-- Load controller config to the parameter server -->
+    <rosparam command="load" 
+              file="$(find mobile_robot_control)/config/mobile_robot_control.yaml"/>
+
+    <!-- Load base config to the parameter server -->
+    <rosparam command="load" 
+              file="$(find mobile_robot_base)/config/base.yaml"/>
+
+    <!-- Load the controllers -->
+    <!-- This will use the controller manager that got started inside the difbot_base node -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" ns="mobile_robot" args="joint_state_controller
+                                            mobile_base_controller"/>
+</launch>
